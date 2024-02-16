@@ -9,6 +9,12 @@ Install the role: `ansible-galaxy role install tigattack.rclone_docker_plugin`
 
 See the [rclone Docker Volume Plugin documentation](https://rclone.org/docker) for further information. It's very useful for a deeper understanding of how this works.
 
+## Requirements
+
+This role requires the `community.docker` collection.
+
+You can install it like so: `ansible-galaxy collection install community.docker`
+
 ## Role Variables
 
 The most commonly useful variables are documented below. More variables and their default values can be seen in [default/main.yml](defaults/main.yml).
@@ -35,7 +41,7 @@ Config directory for rclone. The plugin will look for `rclone.conf` in this dire
 
 ## Example Playbook
 
-Simple, only install plugin:
+Simple - Only install the plugin:
 
 ```yml
 - hosts: all
@@ -43,7 +49,7 @@ Simple, only install plugin:
     - role: tigattack.rclone_docker_plugin
 ```
 
-Advanced, install specific plugin version with custom args and a custom cache directory:
+Advanced - Install specific a plugin version with custom args and a custom cache directory:
 
 ```yml
 - hosts: all
@@ -56,6 +62,8 @@ Advanced, install specific plugin version with custom args and a custom cache di
           --vfs-cache-mode=full
           --vfs-cache-max-size=5G
         rclone_docker_plugin_cache_dir: /home/user/.cache/rclone
+        rclone_docker_plugin_cache_dir_owner: user
+        rclone_docker_plugin_cache_dir_group: user
 ```
 
 # Attribution
