@@ -1,0 +1,34 @@
+---
+
+# Architecture of rclone/docker-volume-rclone
+rclone_docker_plugin_architecture: >-
+  {{ 'amd64' if ansible_architecture == 'x86_64'
+      else 'arm64' if ansible_architecture == 'aarch64'
+      else 'arm-v7' if ansible_architecture == 'armv7l'
+      else undef(hint='Unknown or unsupported architecture: ' + ansible_architecture)
+  }}
+
+# Version number of rclone/docker-volume-rclone
+# e.g. `1.65.2`
+# rclone_docker_plugin_version: ''
+
+# Extra arguments for the rclone volume plugin
+# The plugin will fail due to a Docker bug if args is empty, so we add `-v` as a workaround.
+rclone_docker_plugin_args: '-v'
+
+# Rclone volume plugin cache directory
+rclone_docker_plugin_cache_dir: '/var/lib/docker-plugins/rclone/cache'
+rclone_docker_plugin_cache_dir_owner: 'root'
+rclone_docker_plugin_cache_dir_group: 'root'
+rclone_docker_plugin_cache_dir_mode: '0755'
+
+# Rclone volume plugin config directory
+rclone_docker_plugin_config_dir: '/var/lib/docker-plugins/rclone/config'
+rclone_docker_plugin_config_dir_owner: 'root'
+rclone_docker_plugin_config_dir_group: 'root'
+rclone_docker_plugin_config_dir_mode: '0755'
+
+# Rclone verbosity
+# 0 (errors only, default) to 2 (debugging)
+# You can also use: `rclone_docker_plugin_args: "-v [-v] ..."`
+rclone_docker_plugin_verbosity: 0

@@ -1,0 +1,42 @@
+---
+
+- name: Install fuse
+  ansible.builtin.package:
+    name: fuse
+    state: present
+
+- name: Set allow_other in fuse.conf
+  ansible.builtin.lineinfile:
+    path: /etc/fuse.conf
+    regexp: ^#?\s*user_allow_other$
+    line: user_allow_other
+
+- name: Ensure rclone plugin directories
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    state: directory
+  loop:
+    - path: "{{ rclone_docker_plugin_config_dir }}"
+      owner: "{{ rclone_docker_plugin_config_dir_owner }}"
+      group: "{{ rclone_docker_plugin_config_dir_group }}"
+      mode: "{{ rclone_docker_plugin_config_dir_mode }}"
+    - path: "{{ rclone_docker_plugin_cache_dir }}"
+      owner: "{{ rclone_docker_plugin_cache_dir_owner }}"
+      group: "{{ rclone_docker_plugin_cache_dir_group }}"
+      mode: "{{ rclone_docker_plugin_cache_dir_mode }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: Install rclone docker volume plugin
+  community.docker.docker_plugin:
+    plugin_name: rclone/docker-volume-rclone:{{ rclone_docker_plugin_image_tag }}
+    alias: rclone
+    plugin_options:
+      config: "{{ rclone_docker_plugin_config_dir }}"
+      cache: "{{ rclone_docker_plugin_cache_dir }}"
+      args: "{{ rclone_docker_plugin_args | default(omit) }}"
+      RCLONE_VERBOSE: "{{ rclone_docker_plugin_verbosity }}"
+    state: enable

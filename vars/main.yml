@@ -1,0 +1,7 @@
+---
+
+rclone_docker_plugin_image_tag: >-
+  {{
+    [rclone_docker_plugin_architecture, rclone_docker_plugin_version] | join("-") if rclone_docker_plugin_version
+    else rclone_docker_plugin_architecture
+  }}

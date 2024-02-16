@@ -1,0 +1,24 @@
+---
+
+dependencies: []
+
+galaxy_info:
+  role_name: rclone_docker_plugin
+  author: tigattack
+  description: Install & configure the rclone Docker Volume Plugin.
+  license: "license (MIT)"
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - rclone
+    - networking
+    - system
