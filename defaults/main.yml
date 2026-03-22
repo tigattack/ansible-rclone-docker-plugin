@@ -2,10 +2,10 @@
 
 # Architecture of rclone/docker-volume-rclone
 rclone_docker_plugin_architecture: >-
-  {{ 'amd64' if ansible_architecture == 'x86_64'
-      else 'arm64' if ansible_architecture == 'aarch64'
-      else 'arm-v7' if ansible_architecture == 'armv7l'
-      else undef(hint='Unknown or unsupported architecture: ' + ansible_architecture)
+  {{ 'amd64' if ansible_facts.architecture == 'x86_64'
+      else 'arm64' if ansible_facts.architecture == 'aarch64'
+      else 'arm-v7' if ansible_facts.architecture == 'armv7l'
+      else undef(hint='Unknown or unsupported architecture: ' + ansible_facts.architecture)
   }}
 
 # Version number of rclone/docker-volume-rclone
