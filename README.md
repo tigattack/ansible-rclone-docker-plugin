@@ -70,7 +70,7 @@ Advanced - Install specific a plugin version with custom args and a custom cache
 
 Thanks to [cycneuramus](https://github.com/cycneuramus) for the foundations of this role's functionality ([cycneuramus/ansible-hybrid-cloud](https://github.com/cycneuramus/ansible-hybrid-cloud/blob/master/roles/rclone-docker-plugin/tasks/main.yml)).
 
-[build_badge]:  https://img.shields.io/github/actions/workflow/status/tigattack/ansible-rclone-rc-remotes/ci.yml?branch=main&label=Ansible%20Lint
-[build_link]:   https://github.com/tigattack/ansible-rclone-rc-remotes/actions?query=workflow:CI
+[build_badge]:  https://img.shields.io/github/actions/workflow/status/tigattack/ansible-rclone-rc-remotes/test.yml?branch=main&label=Ansible%20Lint
+[build_link]:   https://github.com/tigattack/ansible-rclone-rc-remotes/actions?query=workflow:Test
 [galaxy_badge]: https://img.shields.io/ansible/role/d/tigattack/rclone_docker_plugin
 [galaxy_link]:  https://galaxy.ansible.com/tigattack/rclone_docker_plugin
